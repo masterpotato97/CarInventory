@@ -6,7 +6,7 @@ import Input from './Input';
 import { useForm } from 'react-hook-form'
 import { server_calls } from "../api/server"
 import { useDispatch, useStore } from "react-redux"
-import {chooseCarmodel,chooseAddress,chooseMake } from "../redux/slices/RootSlice"
+import {chooseName, chooseCarmodel,chooseAddress,chooseMake } from "../redux/slices/RootSlice"
 
 interface ContactFormProps {
   id?: string[];
@@ -17,7 +17,7 @@ const ContactForm = (props: ContactFormProps) => {
   const dispatch = useDispatch();
   const store = useStore();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: any, event: any) => {
    
    
     console.log(`ID: ${typeof props.id}`);
@@ -28,9 +28,10 @@ const ContactForm = (props: ContactFormProps) => {
       console.log(`Updated: ${ data.first } ${ props.id }`)
       event.target.reset()
     } else {
-      dispatch(chooseMake(data.first));
-      dispatch(chooseCarmodel(data.last));
-      dispatch(chooseAddress(data.email));
+      dispatch(chooseName(data.name));
+      dispatch(chooseMake(data.make));
+      dispatch(chooseCarmodel(data.carmodel));
+      dispatch(chooseAddress(data.address));
 
 
       server_calls.create(store.getState())
@@ -40,6 +41,10 @@ const ContactForm = (props: ContactFormProps) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+          <label htmlFor="name">Name</label>
+          <Input {...register('name')} name="name" placeholder="Name" />
+        </div>
         <div>
           <label htmlFor="make">Car Make</label>
           <Input {...register('make')} name="make" placeholder="Make" />

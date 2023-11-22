@@ -7,7 +7,7 @@ export const server_calls = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+              
                 'x-access-token': `Bearer ${token}`
             }
 
@@ -20,6 +20,7 @@ export const server_calls = {
         return await response.json()
     },
     create: async (data: any = {}) => {
+        console.log(data)
         const response = await fetch(`https://carapi-n9of.onrender.com/api/car`,
         {
             method: 'POST',
@@ -46,7 +47,7 @@ export const server_calls = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+               
                 'x-access-token': `Bearer ${token}`
             },
             body: JSON.stringify(data)
@@ -66,7 +67,7 @@ export const server_calls = {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
+                
                 'x-access-token': `Bearer ${token}`
             },
 
