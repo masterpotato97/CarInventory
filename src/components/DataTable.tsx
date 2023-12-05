@@ -5,6 +5,7 @@ import { server_calls } from '../api/server';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
 import UpdateForm from './UpdateForm'; // Import the UpdateForm component
+import UpdateModal from './UpdateModal';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: "ID", width: 90},
@@ -18,7 +19,7 @@ function DataTable() {
     let [ open, setOpen ] = useState(false);
     const { contactData, getData } = useGetData();
     const [ selectionModel, setSelectionModel ] = useState<string[]>([]);
-    const [ updateFormOpen, setUpdateFormOpen ] = useState(false);
+    let [ updateFormOpen, setUpdateFormOpen ] = useState(false);
     
     const handleOpen = () => {
         setOpen(true);
@@ -61,17 +62,20 @@ function DataTable() {
 
     return (
         <>
-            <UpdateForm
-                open={updateFormOpen}
-                onClose={() => setUpdateFormOpen(false)}
-                selectedItemId={selectionModel[0]}
-                onUpdate={handleUpdateSubmit}
-            />
             <Modal 
                 id={selectionModel}
                 open={open}
                 onClose={handleClose}
+               
             />
+        {updateFormOpen && (
+    <UpdateModal
+        id={selectionModel}
+        updateFormOpen={updateFormOpen}
+        handleUpdateSubmit={handleUpdateSubmit}
+    />
+)}
+          
             <div className="flex flex-row">
                 <div>
                     <button
@@ -81,9 +85,17 @@ function DataTable() {
                         Create New car
                     </button>
                 </div> 
-                <Button onClick={handleUpdate} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Update</Button>
+                <div>
+                <button
+                        className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
+                        onClick={() => handleUpdate()}>
+                            update
+                        </button>
+                        </div>
+
                 <Button onClick={deleteData} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Delete</Button>
             </div>
+
             {/* Data Table section */}
             <div className={ open ? "hidden" : "container mx-10 my-5 flex flex-col"}
                 style={{ height: 400, width: '100%'}}

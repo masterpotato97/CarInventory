@@ -1,4 +1,4 @@
-import ContactForm from './ContactForm';
+import UpdateForm from './UpdateForm';
 
 
 
@@ -7,7 +7,8 @@ type Props = {
     onClose: () => void;
 }
 
-const Modal = (props: Props) => {
+const UpdateModal = (props: Props) => {
+    console.log('UpdateModal props:', props);
     if (!props.open) return (<></>)
 
     return (
@@ -31,7 +32,7 @@ const Modal = (props: Props) => {
                     </div>
                     <div>
                        
-                            <ContactForm />
+                            <UpdateForm />
                         
                     </div>
                 </div>
@@ -40,4 +41,4 @@ const Modal = (props: Props) => {
     )
 }
 
-export default Modal;
+export default UpdateModal;
