@@ -9,12 +9,12 @@ type Props = {
 
 const UpdateModal = (props: Props) => {
     console.log('UpdateModal props:', props);
-    if (!props.open) return (<></>)
+   if (!props.open) return (<></>)
 
     return (
         <div
             onClick={props.onClose}
-            className='fixed w-full h-full flex overflow-auto z-1 
+            className='fixed w-full h-full flex overflow-auto z-20 
             justify-center items-center bg-gray-300 bg-opacity-75'
         >
             <div

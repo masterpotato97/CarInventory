@@ -42,6 +42,8 @@ export const server_calls = {
     },
 
     update: async (id: string, data:any = {}) => {
+        console.log(id)
+        console.log(data)
         const response = await fetch(`https://carapi-n9of.onrender.com/api/cars/${id}`,
         {
             method: 'PUT',

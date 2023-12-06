@@ -28,6 +28,10 @@ function DataTable() {
     const handleClose = () => {
         setOpen(false);
     }
+    const handleUpdateClose = () =>{
+        setUpdateFormOpen(false);
+    }
+
 
     const deleteData = async () => {
         await server_calls.delete(selectionModel[0]);
@@ -68,13 +72,13 @@ function DataTable() {
                 onClose={handleClose}
                
             />
-        {updateFormOpen && (
+        
     <UpdateModal
         id={selectionModel}
-        updateFormOpen={updateFormOpen}
+        open={updateFormOpen}
         handleUpdateSubmit={handleUpdateSubmit}
+        onClose={handleUpdateClose}
     />
-)}
           
             <div className="flex flex-row">
                 <div>
