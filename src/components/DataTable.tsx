@@ -8,19 +8,19 @@ import UpdateForm from './UpdateForm'; // Import the UpdateForm component
 import UpdateModal from './UpdateModal';
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: "ID", width: 90},
-    { field: 'make', headerName: "Make", flex: 1},
-    { field: 'name', headerName: "Name", flex: 1},
-    { field: 'model', headerName: "Model", flex: 1},
-    { field: 'address', headerName: "Address", flex: 1}
+    { field: 'id', headerName: "ID", width: 90 },
+    { field: 'make', headerName: "Make", flex: 1 },
+    { field: 'name', headerName: "Name", flex: 1 },
+    { field: 'model', headerName: "Model", flex: 1 },
+    { field: 'address', headerName: "Address", flex: 1 }
 ];
 
 function DataTable() {
-    let [ open, setOpen ] = useState(false);
+    let [open, setOpen] = useState(false);
     const { contactData, getData } = useGetData();
-    const [ selectionModel, setSelectionModel ] = useState<string[]>([]);
-    let [ updateFormOpen, setUpdateFormOpen ] = useState(false);
-    
+    const [selectionModel, setSelectionModel] = useState<string[]>([]);
+    let [updateFormOpen, setUpdateFormOpen] = useState(false);
+
     const handleOpen = () => {
         setOpen(true);
     }
@@ -28,7 +28,7 @@ function DataTable() {
     const handleClose = () => {
         setOpen(false);
     }
-    const handleUpdateClose = () =>{
+    const handleUpdateClose = () => {
         setUpdateFormOpen(false);
     }
 
@@ -66,20 +66,19 @@ function DataTable() {
 
     return (
         <>
-            <Modal 
+            <Modal
                 id={selectionModel}
                 open={open}
                 onClose={handleClose}
-               
+
             />
-        
-    <UpdateModal
-        id={selectionModel}
-        open={updateFormOpen}
-        handleUpdateSubmit={handleUpdateSubmit}
-        onClose={handleUpdateClose}
-    />
-          
+
+            <UpdateModal
+                id={selectionModel[0]}
+                open={updateFormOpen}
+                onClose={handleUpdateClose}
+            />
+
             <div className="flex flex-row">
                 <div>
                     <button
@@ -88,28 +87,28 @@ function DataTable() {
                     >
                         Create New car
                     </button>
-                </div> 
+                </div>
                 <div>
-                <button
+                    <button
                         className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
                         onClick={() => handleUpdate()}>
-                            update
-                        </button>
-                        </div>
+                        update
+                    </button>
+                </div>
 
                 <Button onClick={deleteData} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Delete</Button>
             </div>
 
             {/* Data Table section */}
-            <div className={ open ? "hidden" : "container mx-10 my-5 flex flex-col"}
-                style={{ height: 400, width: '100%'}}
+            <div className={open ? "hidden" : "container mx-10 my-5 flex flex-col"}
+                style={{ height: 400, width: '100%' }}
             >
                 <h2 className="p-3 bg-slate-300 my-2 rounded">My Cars</h2>
-                <DataGrid 
-                    rows={contactData} 
+                <DataGrid
+                    rows={contactData}
                     columns={columns}
-                    checkboxSelection={true} 
-                    onRowSelectionModelChange={ (item:any) => {
+                    checkboxSelection={true}
+                    onRowSelectionModelChange={(item: any) => {
                         setSelectionModel(item);
                     }}
                     componentsProps={{

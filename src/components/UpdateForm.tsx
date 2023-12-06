@@ -9,7 +9,7 @@ import { useDispatch, useStore } from "react-redux"
 import {updateName, updateCarmodel,updateAddress,updateMake } from "../redux/slices/UpdateSlice"
 
 interface UpdateFormProp {
-  id?: string[];
+  id?: string;
 }
 const UpdateForm = (props: UpdateFormProp) => {
   const { register, handleSubmit } = useForm();
@@ -23,13 +23,13 @@ const UpdateForm = (props: UpdateFormProp) => {
     console.log(props.id)
     console.log(data)
     if (props.id && props.id.length > 0) {
-      server_calls.update(props.id[0], data)
+      server_calls.update(props.id, data)
       console.log(`Updated: ${ data.first } ${ props.id }`)
       event.target.reset()
     } else {
       dispatch(updateName(data.name));
       dispatch(updateMake(data.make));
-      dispatch(updateCarmodel(data.carmodel));
+      dispatch(updateCarmodel(data.model));
       dispatch(updateAddress(data.address));
 
 
@@ -51,8 +51,8 @@ const UpdateForm = (props: UpdateFormProp) => {
           <Input {...register('make')} name="make" placeholder="Make" />
         </div>
         <div>
-          <label htmlFor="carmodel">Car Model</label>
-          <Input {...register('carmodel')} name="carmodel" placeholder="Car Model" />
+          <label htmlFor="model">Car Model</label>
+          <Input {...register('model')} name="model" placeholder="Model" />
         </div>
         <div>
           <label htmlFor="address">Address</label>

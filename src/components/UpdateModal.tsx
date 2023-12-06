@@ -3,12 +3,13 @@ import UpdateForm from './UpdateForm';
 
 
 type Props = {
+    id: string;
     open: boolean;
     onClose: () => void;
 }
 
 const UpdateModal = (props: Props) => {
-    console.log('UpdateModal props:', props);
+    console.log('UpdateModal props:', props.id);
    if (!props.open) return (<></>)
 
     return (
@@ -32,7 +33,7 @@ const UpdateModal = (props: Props) => {
                     </div>
                     <div>
                        
-                            <UpdateForm />
+                            <UpdateForm id={props.id} />
                         
                     </div>
                 </div>
