@@ -9,7 +9,7 @@ const rootSlice = createSlice({
         address: "Address"
     },
     reducers: {
-        chooseName:(state, action) => { state.address = action.payload},
+        chooseName:(state, action) => { state.name = action.payload},
         chooseMake: (state, action) => { state.make = action.payload},
         chooseCarmodel: (state, action) => { state.carmodel = action.payload},
         chooseAddress: (state, action) => { state.address = action.payload}

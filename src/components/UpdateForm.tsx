@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSubmit } from 'react-router-dom';
+
 import Button from './Button';
 import Input from './Input';
 
@@ -16,25 +15,26 @@ const UpdateForm = (props: UpdateFormProp) => {
   const dispatch = useDispatch();
   const store = useStore();
 
-  const onSubmit = (data: any, event: any) => {
-   
-   
+  const onSubmit = async (data: any, event: any) => {
     console.log(`ID: ${typeof props.id}`);
-    console.log(props.id)
-    console.log(data)
-    if (props.id && props.id.length > 0) {
-      server_calls.update(props.id, data)
-      console.log(`Updated: ${ data.first } ${ props.id }`)
-      event.target.reset()
+    console.log(props.id);
+    console.log(data);
+  
+    if (props.id) {
+      await server_calls.update(props.id, data);
+      console.log(`Updated: ${data.name} ${props.id}`);
     } else {
       dispatch(updateName(data.name));
       dispatch(updateMake(data.make));
       dispatch(updateCarmodel(data.model));
       dispatch(updateAddress(data.address));
-
-
-      server_calls.create(store.getState())
+  
+      await server_calls.create(store.getState());
     }
+  
+    event.target.reset();
+  
+    window.location.reload();
   };
 
   return (

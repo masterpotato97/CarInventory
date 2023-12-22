@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSubmit } from 'react-router-dom';
+
 import Button from './Button';
 import Input from './Input';
 
@@ -17,14 +16,14 @@ const ContactForm = (props: ContactFormProps) => {
   const dispatch = useDispatch();
   const store = useStore();
 
-  const onSubmit = (data: any, event: any) => {
+  const onSubmit = async (data: any, event: any) => {
    
    
     console.log(`ID: ${typeof props.id}`);
     console.log(props.id)
     console.log(data)
     if (props.id && props.id.length > 0) {
-      server_calls.update(props.id[0], data)
+      await server_calls.update(props.id[0], data)
       console.log(`Updated: ${ data.first } ${ props.id }`)
       event.target.reset()
     } else {
@@ -34,8 +33,11 @@ const ContactForm = (props: ContactFormProps) => {
       dispatch(chooseAddress(data.address));
 
 
-      server_calls.create(store.getState())
+      //server_calls.create(store.getState())
+      await server_calls.create(data);
+      event.target.reset();
     }
+  window.location.reload();
   };
 
   return (
@@ -65,6 +67,7 @@ const ContactForm = (props: ContactFormProps) => {
             className="flex justify-start m-3 bg-slate-300 p-2 rounded hover:bg-slate-800 text-white"
           >
             Submit
+          
           </Button>
         </div>
       </form>

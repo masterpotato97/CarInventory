@@ -3,6 +3,7 @@ import ContactForm from './ContactForm';
 
 
 type Props = {
+   
     open: boolean;
     onClose: () => void;
 }

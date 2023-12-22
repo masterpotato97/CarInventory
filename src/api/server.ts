@@ -19,6 +19,7 @@ export const server_calls = {
 
         return await response.json()
     },
+    
     create: async (data: any = {}) => {
         console.log(data)
         const response = await fetch(`https://carapi-n9of.onrender.com/api/car`,

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from "./Button";
 import Modal from "./Modal";
 import { server_calls } from '../api/server';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
-import UpdateForm from './UpdateForm'; // Import the UpdateForm component
 import UpdateModal from './UpdateModal';
 
 const columns: GridColDef[] = [
@@ -48,26 +47,10 @@ function DataTable() {
         }
     };
 
-    const handleUpdateSubmit = async (id, updatedData) => {
-        try {
-            // Make an API call to update the selected item with the provided data
-            await server_calls.update(id, updatedData);
-
-            // Refresh the data after the update
-            getData();
-
-            // Close the update form modal
-            setUpdateFormOpen(false);
-        } catch (error) {
-            console.error('Error updating data:', error);
-            // Handle errors (e.g., show an error message to the user)
-        }
-    };
-
     return (
         <>
             <Modal
-                id={selectionModel}
+               // id={selectionModel}
                 open={open}
                 onClose={handleClose}
 
