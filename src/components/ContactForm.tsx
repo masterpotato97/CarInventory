@@ -14,7 +14,6 @@ interface ContactFormProps {
 const ContactForm = (props: ContactFormProps) => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const store = useStore();
 
   const onSubmit = async (data: any, event: any) => {
    
@@ -33,7 +32,6 @@ const ContactForm = (props: ContactFormProps) => {
       dispatch(chooseAddress(data.address));
 
 
-      //server_calls.create(store.getState())
       await server_calls.create(data);
       event.target.reset();
     }
