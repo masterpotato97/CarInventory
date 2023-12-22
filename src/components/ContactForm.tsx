@@ -4,7 +4,7 @@ import Input from './Input';
 
 import { useForm } from 'react-hook-form'
 import { server_calls } from "../api/server"
-import { useDispatch, useStore } from "react-redux"
+import { useDispatch } from "react-redux"
 import {chooseName, chooseCarmodel,chooseAddress,chooseMake } from "../redux/slices/RootSlice"
 
 interface ContactFormProps {
